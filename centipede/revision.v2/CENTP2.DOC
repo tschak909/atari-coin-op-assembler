@@ -1,0 +1,480 @@
+
+
+FILE NAME:	CENTP2.DOC
+PROGRAMMER:	ED LOGG
+DATE:		MAY 13, 1981
+
+
+
+		CENTIPEDE DOCUMENTATION
+		-----------------------
+
+
+		CONTROLS
+		-------
+
+1)1 player start button
+2)2 player start button
+3)1 player start LED
+4)2 player start LED
+5)Player 1 fire switch
+6)Player 2 fire switch (cocktail only)
+7)Player 1 trackball
+8)Player 1 joystick (if trackball not used)
+9)Player 2 trackball (cocktail only)
+10)Player 2 joystick (if trackball not used)
+11)3 coin switches
+12)3 coin counters
+13)Slam switch
+14)Self test switch
+
+
+		MONITOR
+		--------
+
+Color raster monitor mounted vertically with the base on the right hand side.
+
+
+		SOUNDS
+		------
+
+All sounds are generated using one POKEY.  
+
+1)Centipede background (thump-thump)
+2)Spider
+3)Scorpion (mermaid, etc.)
+4)Flea (ant, bomber, etc.)
+5)Explosions (all but player explosion)
+6)Player explosion
+7)Bonus life
+8)Abuse alarm
+9)Player shooting
+
+
+		OPTION SWITCHES
+		---------------
+		BANK 1
+
+		1    2    3    4    5    6    7    8
+Language	ON   ON					*English
+		OFF  ON					 German
+		ON   OFF				 French
+		OFF  OFF				 Spanish
+Starting		 ON    ON			 2 lives
+lives			 OFF   ON			*3 lives
+			 ON    OFF			 4 lives
+		         OFF   OFF			 5 lives
+Bonus				    ON   ON		 Every 10,000 points
+level				    OFF  ON		 Every 12,000 points
+				    ON   OFF		*Every 15,000 points
+				    OFF  OFF		 Every 20,000 points
+Difficulty				      ON	*Hard
+					      OFF	 Easy
+2 credit		  	            	  ON    *1 credit minimum
+minimum						  OFF    2 credit minimum
+
+
+
+		BANK 2
+
+		1    2    3    4    5    6    7    8
+Coin modes	ON   ON					 Free play
+		OFF  ON					 1 coin 2 Plays
+		ON   OFF				*1 Coin 1 Play
+		OFF  OFF				 2 Coins 1 Play
+Right mech		 ON    ON		        *Mech has value 1
+multiplier		 OFF   ON		     **  Mech has value 4
+			 ON    OFF		     **  Mech has value 5
+			 OFF   OFF		     **  Mech has value 6
+Center mech			   ON			*Mech has value 1
+multiplier			   OFF		     **  Mech has value 2
+					ON   ON   ON    *No bonus coins
+Bonus adder				OFF  ON   ON     2 U-C = 1 bonus  U-C
+					ON   OFF  ON	 4 U-C = 1 bonus  U-C
+					OFF  OFF  ON	 4 U-C = 2 bonus  U-C
+					ON   ON   OFF	 5 U-C = 1 bonus  U-C
+					OFF  ON   OFF	 3 U-C = 1 bonus U-C
+					ON   OFF  OFF	 Not assigned
+					OFF  OFF  OFF	 Not assigned
+U-C = Unit coin
+*   = Default value
+**  = Only hits coin counter once
+
+NOTE:  Bonus adder will not affect coin counters
+
+
+		SCORING
+		-------
+
+1)Destroying a mushroom = 1
+2)Partial mushrooms or "poisoned" mushrooms (after your death) = 5
+3)Centipede body = 10
+4)Centipede head = 100
+5)Flea = 200
+6)Scorpion = 1000
+7)Spider = 300, 600 or 900
+
+	When a bonus level is reached a new life is given provided the player
+does not already have six.  When a new life is given a bonus life sound will be
+given to alert the player.  If the player has six lives then no sound will be
+given and the next bonus level will be activated.
+
+
+		ATTRACT MODE
+		------------
+
+	During attract the high score table will be displayed showing eight high
+scores and the player's three initials.  In the upper left corner is
+player 1's score.  In the upper right corner is player 2's score.  In the middle
+of the top row is the current high score.  At the bottom of the screen is the
+copyright message which reads "C 1980 ATARI".  In the middle of the screen will
+appear the game cost message (1 COIN 1 PLAY, etc.).  If free play was selected
+then no message will appear.  There will also be a message showing the number of
+points needed for a bonus life ("BONUS EVERY 10000", etc.).  If any credits have
+been entered, the number of credits will be shown by a message of the form
+"CREDITS 2 1/2".  Note that 1/2 credit can occur when "2 COINS 1 PLAY" is selected
+and an odd number of coins has been entered.  If "2 CREDIT MINIMUM" has been
+selected and there are fewer than two credits, that message will flash on and off.
+
+	Besides the messages on the screen you will find a field of mushrooms 
+scattered throughout the screen.  There will be no mushrooms on the bottom line.
+The players gun will be shown moving randomly about the screen firing at will.
+The spider, flea, and scorpion will enter just as it would in the game play.  If
+the entire centipede is shot, the screen changes colors and a new centipede
+enters.  The player's gun will be destroyed by running into the spider, flea, or
+centipede.  Everything is just like the game play except there are no sounds, no
+scoring, and no player input.
+
+	When no credit exists neither start button LED will be on.  When credit
+exists for a 1 player game the 1 player start LED will flash.  When credit exists
+for either a one or two player game then both LED's will flash.  Note that in
+"2 CREDIT MINIMUM" mode the 1 player start LED will not flash until two credits
+have been entered.
+
+	If the slam switch is closed during attract or play mode
+the abuse alarm, a loud irritating sound, will occur.  This will
+alert the operator that the game coin door is being abused.
+
+	The top three high scores will be loaded from the EAROM at power up
+if there are no checksum errors.
+If the option switches for bonus lives, number of starting lives or game
+difficulty are changed from the switch settings saved in the EAROM,
+the high scores will be discarded (but not the accounting statistics).
+
+		GAME PLAY
+		---------
+
+	This mode is entered when one of the two flashing start switches is
+pushed.  The appropriate LED will then stay on until the end of the game.  In a
+one player game, there will be no score displayed for player 2 in the upper right
+corner.  There will be no screen messages except the scores and numbers of lives 
+remaining shown on the top row of the screen.  In a two player game the message
+"PLAYER x" will appear to indicate which player is up.
+
+	The player's gun will appear in the center of the bottom row.  His controls
+are now active and can be used to move his gun left, right, up, or down.  You
+will note that the player's upward motion is restricted to the bottom few rows.
+The player's fire button can be fired in single fire mode or rapid fire mode.  As
+long as the fire switch is depressed, a shot will be fired whenever it is available.
+
+	The centipede enters from the top and snakes its way down the screen.  It
+turns whenever it collides with an object.  When it is shot it will break into
+two smaller centipedes.  When the centipedes reach the bottom they will start
+back up always staying in the area used by the player.  When a large centipede
+starts back up it releases its tail segment as a new head.  If all the centipede
+is not destroyed once it has reached the bottom, new heads will start out from
+the sides near the bottom.  The heads will come out more often as time progresses.
+When the entire centipede is destroyed the screen will change colors and a new
+centipede will enter from the top.  The new centipede will have one less segment
+but there will be a fast head.  The second wave has a slow centipede, the third
+a fast centipede, the forth a slow centipede with two fast heads,etc.  When the
+players score reaches 40,000 there will be no more slow centipedes and each wave
+brings in more separate heads.  After the wave with all heads, the cycle starts
+over with one large centipede.  A centipede segment will destroy the player.
+
+	There is also a spider which enters from one side and proceeds towards
+the other side moving in a random pattern.  He can destroy the player as well as
+eliminating any mushrooms he moves over.  The value of the spider depends on
+how close he is to the player.  The first few spiders are slow.  Starting at 60,000
+points the spider will restrict his travel closer to the bottom of the screen.
+
+	Starting with the second wave, the flea will bombard the player randomly
+depositing mushrooms behind him.  The flea comes out whenever the number of mush-
+rooms on the bottom of the screen is less than five.  It takes two hits to destroy
+the flea.  The first hit just speeds him up.  The flea does not come out during
+the first wave.  After the player reaches 60,000 points the flea will start out
+faster.  At 20,000 points the flea will come out if there are fewer than nine mush-
+rooms on the bottom of the screen.  At 120,000 points the ant will come out more
+often.  The number of mushrooms necessary to bring him out increases with the
+score.
+
+	The scorpion enters randomly from either side starting with the forth
+wave.  It can move slow or faster but as the game progresses it enters only fast.
+The scorpion will turn normal mushrooms into "poisoned" mushrooms.  These mush-
+rooms cause any centipedes which run into them to head toward the bottom of the
+screen.  This motion can be stopped by shooting the head of this "poisoned"
+centitpede.
+
+
+			HIGH SCORE TABLE
+			----------------
+
+	When the player gets one of eight best scores the messages "GREAT SCORE"
+and "ENTER YOUR INITIALS" will appear in the middle of the screen.  The player
+has a minute and a half to enter his first initial and a minute for each additional
+initial otherwise the game will return to the attract mode.  The player can enter
+three letters including blanks by using the trackball or joystick and the fire
+button.  When the last initial has been entered the game will return to the attract
+mode.
+
+	Pushing a flashing start button will cause the game to start without the
+player completing his initials.
+
+
+			SELF TEST
+			---------
+
+RAM TEST
+
+	Self test is broken into several smaller tests.  The first test which
+must succeed before it will continue is the RAM test.  The zero/stack page and
+screen RAM are tested and if an error occurs a number of beeps will be given
+indicating the failing chip.  To restart the test reset must be used.  This test
+stops at the first RAM failure detected.
+
+# of Beeps	PCB Position		Address			RAM Type
+----------	------------		-------			--------
+
+    1		    H2		(0-3FF LSB)			  2114
+    2		    F2		(0-3FF MSB)			  2114
+    3		    K7		(400-40F,440-44F,etc. LSB)	  2101
+    4		    K5		(400-40F,440-44F,etc. MSB)	  2101
+    5		    L7		(410-41F,450-455,etc. LSB)	  2101
+    6		    L5		(410-41F,450-455,etc. MSB)	  2101
+    7		    M7		(420-42F,460-46F,etc. LSB)	  2101
+    8		    M5		(420-42F,460-46F,etc. MSB)	  2101
+    9		    N7		(430-43F,470-47F,etc. LSB)	  2101
+   10		    N5		(430-43F,470-47F,etc. MSB)	  2101
+
+
+
+ROM TEST
+
+	If the RAM test succeeds the next step will be checksumming the ROM's.
+The ROM's will be checksummed in 2048 byte blocks.  If an error occurs the
+difference will be displayed in the upper left corner next to a number corresponding
+to the chart below:
+
+ROM Number	PCB Position		ROM Address		EPROM or ROM Type
+----------	------------		-----------		-----------------
+
+    0		    D1			 2000-27FF		   2716 or 8316
+    1		    E1			 2800-2FFF		   2716 or 8316
+    2		    F/H1		 3000-37FF		   2716 or 8316
+    3		    J1			 3800-3FFF		   2716 or 8316
+    4               E5                   N/A                       ER2055
+    5               B/C/D3               N/A                       POKEY
+
+	There is also a S4264 (8K by 8) ROM which can replace the four 2716's.
+If this chip fails then any one of the four checksums will be displayed showing
+the portion in error.
+
+	Note that the hexidecimal number following the ROM number corresponds to
+data lines as follows:
+
+	80	D7	These numbers can be combined
+	40	D6	to indicate multiple bit
+	20	D5	problems.  Hence "C5" means
+	10	D4	D7, D6, D2 and D0 were wrong.
+	 8	D3
+	 4	D2
+	 2	D1
+	 1	D0
+
+
+SCREEN LAYOUT
+
+	The screen will initially set for a tan background with the entire
+character set displayed in the right most six columns.  You will notice that
+the second pair of columns flips the pictures vertically.  The third pair should
+flip the pictures horizontally.  In the middle of the screen you will see sixteen
+motion objects offset by one horizontally and vertically.
+
+	All inputs are displayed in six columns on the left side of the screen.
+The top row is D0, the next row D1, etc., with the last row being D7.  Each column
+will be discussed more fully in the sections below.
+
+
+LED TEST
+
+	The two start LEDS should be on throughout self test.
+
+
+OPTION SWITCH TEST
+
+	The first column on the left corresponds to bank 1 of the option switches.
+The second column corresponds to bank 2.  All option switches settings can be
+selected by looking at attract except the number of lives, the coin mech multi-
+pliers, the game difficulty and the bonus coin selection.  In self test you will
+will find the information needed to set these four exceptions.  In the middle of
+the screen you will see a number of players guns corresponding to the number
+the player will start with.  Below this are three digits giving the coin mech
+multipliers for the left, middle and right coin mechs respectively.  Below this
+there may be two digits giving the bonus adder selection.  If there are no digits
+then no bonus coins are selected.  To understand these two digits, say 5 and 2,
+you should read it as 5 coins gives 2 bonus coins.  The last line will have a
+message "EASY" or "HARD" for the game difficulty.
+
+
+TRACKBALL/JOYSTICK TEST
+
+	Self test starts out with player 1 trackball or joystick enabled.  The
+switch inputs for the trackball in the forth and fifth columns for the horizontal
+and vertical respectively.  D7 is the direction bit and should remain constant
+while the trackball is being rolled in the same direction.  D0 through D3 are the
+four bits of the up/down counter.  You should see these bits count up/down if the
+trackball is moved slowly.
+
+	For joystick input see the last column of the switch inputs.  D7, D6, D5,
+D4 for player 1 and D3, D2, D1 and D0 for player 2 are the up, down, left, and
+right directions respectively.
+
+	The trackball or joystick move one motion object on the screen.  
+Verify that the motion object moves in the direction directed by the joystick or
+trackball.
+
+	Pushing the player 2 fire switch causes the second trackball and joystick
+inputs to be used.  Pushing the player 1 fire switch returns control to player 1
+controlls.
+
+
+SWITCH TEST
+
+	All the switches shown in the third column (2 start buttons, 2 fire
+switches, slam switch, 3 coin switches) cause an audio beep when they are 
+depressed.  If more switches are depressed, then the volume increases and a lower
+frequency is used.  If self test comes up with the sound on, a switch is 
+shorted and can be found by checking for a zero in the third column of switch
+inputs or depressing switches until no sound change is detected.  If no sounds
+are detected, check the volume pot or check the POKEY chip.
+
+
+POKEY TEST
+
+	The POKEY chip is used for random numbers and sound generation.
+The switch tests above test the basic sound generation capability
+(i.e. volume and frequency).  Whenever the 1 player start switch
+is pushed the next POKEY channel will be used.  The channels will
+advance from one to two to three to zero and back to one.  Hence by
+pushing this button four times it is possible to determine if one
+POKEY channel is not functioning.
+
+
+COLOR RAM TEST
+
+	Pushing the 1 player start causes the background color to change from
+color zero (tan) to one (light green) to two (pink), etc., up to fifteen (black)
+and back to zero.  Pushing the 2 player start changes the playfield and motion
+object colors (three color ram locations each).  Again this button just cycles
+through all the colors.
+
+
+MOTION OBJECT TEST
+
+	Movement of the motion objects can be tested by moving the trackball or
+joystick as was mentioned earlier.  Pushing the 1 player start button causes the
+current motion object number to be incremented.  This means another motion object
+can be moved via the trackball or joystick.  The motion object pictures can be
+tested by pushing the player 1 fire button.  After pushing the fire button sixty-
+four times the pictures will return to their original code except they are reflected
+vertically.  After another sixty-four they will be reflected horizontally.  This
+acts the same as the playfield stamps.
+
+
+EAROM TEST
+
+	The EAROM will be read into a RAM buffer.  If the checksum does not match,
+the difference will be displayed below the other ROM checksums.  If the EAROM
+data is good, no checksum will occur and there will be two messages in the center
+of the screen.  The first message is the total number of plays since the last
+time the EAROM was cleared.  The second is the average game time accurate to four
+seconds.
+
+	The EAROM will be cleared by pushing the
+1 player start, 2 player start and the player 1 fire switch simultaneously.
+When the EAROM is cleared the checksum in the upper left corner will show "FF".
+This clears both the high scores and the accounting info.  Note that the EAROM
+will be initialized automatically with the completion of a game. 
+
+
+			COLOR MONITOR ALIGNMENT
+			------------------------
+
+
+	The first adjustment is sizing and centering the picture.  This can be
+done in either self test or in attract mode.  Try to fill in as much of the 
+screen as possible by adjusting the horizontal and vertical width.  Be sure that
+picture is centered and that both left and margins are visible by observing the
+two six digit player scores at the top row.  Also be sure that the copyright
+message is clearly visible on the bottom line in attract.
+
+	To adjust the monitor color set the slam switch on and enter self test.
+A color bar pattern should appear showing all sixteen colors used.  The colors are:
+
+	TAN		ORANGE		WHITE		YELLOW
+	LIGHT GREEN	DARK GREEN	CYAN		GREEN
+	PINK		RED		PURPLE		RED
+	DARK BLUE	BLACK		BLUE		BLACK
+
+	To align all three color guns just hit one of the three coin switches
+when running in the color bar test.  This will now enter a test pattern with
+white dots on a black background.
+
+
+			PCB TEST PROCEDURE
+			------------------
+
+ 1)  Turn on self test and push reset.
+ 2)  Did the RAM test pass?  If not replace failing chip and restart test.
+ 3)  Is there a TV picture?  If not check video circuitry.  Is watchdog causing
+     the game to be reset over and over?  If so, the processor circuitry
+     is not working.
+ 4)  Are both LED's on?  If not, LED's are burned out or there is an error in
+     the LED driving circuits.
+ 5)  There should be no checksums shown in the upper left hand corner.  If there
+     are then correct the EPROM or ROM in error. Note that ROM 4 can have a
+     checksum error if it has never been used or if it has been cleared (check-
+     sum=FF).
+ 6)  Test both banks of option switches to be sure they can be turned on (0) as
+     well as off (1).
+ 7)  Test player one trackball or joystick.  The motion object should move in
+     the correct direction.  Also check that the motion object does not jump
+     more than one vertical or horizontal position.
+ 8)  Push all switches (2 start buttons, 3 coin switches, 1 slam switch, 2 fire
+     buttons).  If no sounds occur check the volume or the POKEY circuitry.  If
+     one switch does not cause a sound then check that switch input on the screen.
+     If switches are shorted together you should hear the tone difference as well
+     as see it on the screen.
+ 9)  Push the player 2 fire button and check the player 2 trackball or joystick
+     as you did for player 1.
+10)  If the POKEY polycounter circuitry is not functioning ROM 5 will appear
+     in the upper left corner.
+11)  Test the POKEY volume control by pushing up to four switches down at once
+     and noting the increase in volume.
+12)  Test all four POKEY channels by pushing the 1 player start four times and
+     noting that the sounds are all the same.
+13)  Check the motion object pictures by pushing the player 1 fire button.
+14)  Check the motion object circuitry by using the trackball and using the player
+     1 start button to advance to the next motion object.
+15)  Check the playfield stamps and their color by checking the right most six
+     columns on the screen.
+16)  Push the slam switch and then the reset button.  This should enter the play-
+     field color RAM test.  Are all the colors as they should be?
+17)  Push a coin switch.  The screen should be a pattern of white dots on black
+     background.
+18)  Turn off self test.  The game should now go into attract.
+19)  To check the EAROM start a game and die as quickly as possible.  Wait 8
+     seconds and then enter self test.  There should be no checksum error and the
+     accounting information should appear in the center of the screen.
+
+                                                                                                                                                        
