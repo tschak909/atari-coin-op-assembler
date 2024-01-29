@@ -60,7 +60,7 @@ at ATARI.)
   ESC OP (PF1)
   ESC Ow (KP7)
   ESC OM (KPENTER)
-  
+  CTRL-BACKSPACE (DEL)
 * STEP 2: ASSEMBLE CODE
 
 - Assign DK to DK1 to make things easier
