@@ -76,6 +76,8 @@ at ATARI.)
 *CENTI2=CENTI2
 *CENIR2=CENIR2
 *CENTS2=CENTS2
+*CENPIC=CENPIC
+*SYNC2=SYNC2
 ^C
 #+END_EXAMPLE
 
@@ -87,9 +89,9 @@ at ATARI.)
 
 #+BEGIN_EXAMPLE
 .R LINKM
-*DK2:CENTI2CENTI2.XX=CENTI2,CENIR2,CENTS2
+*DK2:CENTI2,CENTI2.XX=CENTI2,CENIR2,CENTS2
 *DK2:CENPIC,CENPIC.XX=CENPIC
-*DK2:SYNC,SYNC.XX=SYNC
+*DK2:SYNC2,SYNC2.XX=SYNC2
 ^C
 #+END_EXAMPLE
 
@@ -155,6 +157,9 @@ $ ./mamed -debug -window centiped2
 
 - The atari-coin-op-assembler repo:
   https://github.com/tschak909/atari-coin-op-assembler
+
+  - The SimH emulator:
+    https://github.com/simh/simh
 
 - The atari coin op tools originally from:
   https://bitsavers.org/bits/Atari/arcade/atari_tools.zip
