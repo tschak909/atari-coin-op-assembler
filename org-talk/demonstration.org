@@ -18,18 +18,21 @@ in context.
 
 * CENTIPEDE
 
-[[https://uploads.tapatalk-cdn.com/20170909/40cce19b998f564161b542bff9edfb3b.jpg][Centipede Board]]
+- [[https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6264/6264911_rd.jpg][Cabinet]] 
+- [[shell:xviewer ./centipede-screen.png][Screenshot]]
+- [[https://uploads.tapatalk-cdn.com/20170909/40cce19b998f564161b542bff9edfb3b.jpg][Board]]
 
 - Developed by Atari throughout 1980
 - Revision 2 released 5/28/81
 - 6502 CPU
-- Movable objects for player and enemies
+- Stamps for player and enemies
 - Tile playfield for mushrooms/messages/score/etc.
+- 2 bits per pixel, 4 colors for playfield and each stamp
 
 * OVERVIEW OF DEVELOPMENT SYSTEM
 
-- [[https://www.physics.purdue.edu/~jones105/pdp-11/images/IMG_2877.JPG][PDP 11/23]]
-- 16-bit mini-computer from 1979
+- [[https://gunkies.org/w/images/e/e8/PDP11-20.jpg][PDP 11/20]]
+- 16-bit mini-computer from 1970
 - 64 kW of memory
 - 3 [[https://upload.wikimedia.org/wikipedia/commons/9/94/RK05.jpg][RK05]] 2.5 megabyte cartridge drives
 - 1 [[https://i0.wp.com/avitech.com.au/wp-content/uploads/2016/08/rx01-front.jpg][RX01]] floppy disk
