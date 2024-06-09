@@ -2,7 +2,7 @@
 #+author: Thomas Cherryhomes
 #+email: thom.cherryhomes@gmail.com
 
-* I. GOAL
+>* I. GOAL
 
 Demonstrate Atari Coin-Op's 6502 Macro Assembler for PDP-11
 in context.
@@ -33,12 +33,12 @@ in context.
 
 - [[https://gunkies.org/w/images/e/e8/PDP11-20.jpg][PDP 11/20]]
 - 16-bit mini-computer from 1970
-- 64 kW of memory
+- 32 kW of memory
 - 3 [[https://upload.wikimedia.org/wikipedia/commons/9/94/RK05.jpg][RK05]] 2.5 megabyte cartridge drives
 - 1 [[https://i0.wp.com/avitech.com.au/wp-content/uploads/2016/08/rx01-front.jpg][RX01]] floppy disk
 - 1 [[https://i.ytimg.com/vi/l--OHNxXFeE/maxresdefault.jpg][PC05]] paper tape reader and punch
 - 1 [[https://upload.wikimedia.org/wikipedia/commons/9/99/DEC_VT100_terminal.jpg][VT100]] as system console terminal
-- OS: RT-11 V3 (1977)
+- OS: RT-11 V4 (1979)
 
 * OVERVIEW OF BLACK BOX
 
@@ -46,15 +46,12 @@ in context.
 - Taking paper tape input to create EPROMS
 - MAME debugger is substitute for HP 1611A Logic Analyser
 
-(using paper tape is an example of the improvisation needed
-by old school developers, to get artifacts to their
-destination, and is not indicative of the exact process used
-at ATARI.)
+(using paper tape is an example of the improvisation needed by old school developers, to get artifacts to their destination, and is not indicative of the exact process used at ATARI.)
 
 * STEP 1: EDIT CODE
 
 - Boot into RT-11
-- Use KED to make code change
+- Use KED to make code change (CENIR2.MAC)
 - SY: disk is RK05, containing OS, and tools.
 - DK1: disk is RK05, containing source code.
 - VT100 is used as system console by programmer.
@@ -92,9 +89,9 @@ at ATARI.)
 
 #+BEGIN_EXAMPLE
 .R LINKM
-*DK2:CENTI2,CENTI2.XX=CENTI2,CENIR2,CENTS2
-*DK2:CENPIC,CENPIC.XX=CENPIC
-*DK2:SYNC2,SYNC2.XX=SYNC2
+DK2:CENTI2,CENTI2.XX=CENTI2,CENIR2,CENTS2
+DK2:CENPIC,CENPIC.XX=CENPIC
+DK2:SYNC2,SYNC2.XX=SYNC2
 ^C
 #+END_EXAMPLE
 
@@ -121,8 +118,10 @@ sim> cont
 - Then we COPY the file to the punch, which creates the tape.
 
 #+BEGIN_EXAMPLE
-.COPY CENTI.SAV PC:
+.COPY DK2:CENTI2.SAV PC:
 #+END_EXAMPLE
+
+Then we do the same for CENPIC.SAV, and SYNC2.SAV
 
 - The paper tape is then read into the development box
   (not shown)
@@ -140,13 +139,13 @@ sim> cont
   but we can recreate its behavior using 'dd' under Linux:
 
 #+BEGIN_EXAMPLE
-$ dd if=centi2.sav of=/home/thomc/Workspace/mame/roms/centiped2/136001-207.d1 bs=1 count=2048 skip=8192
-$ dd if=centi2.sav of=/home/thomc/Workspace/mame/roms/centiped2/136001-208.e1 bs=1 count=2048 skip=10240
-$ dd if=centi2.sav of=/home/thomc/Workspace/mame/roms/centiped2/136001-209.fh1 bs=1 count=2048 skip=12288
-$ dd if=centi2.sav of=/home/thomc/Workspace/mame/roms/centiped2/136001-210.j1 bs=1 count=2048 skip=14336
-$ dd if=cenpic.sav of=/home/thomc/Workspace/mame/roms/centiped2/136001-211.f7 bs=1 count=2048
-$ dd if=cenpic.sav of=/home/thomc/Workspace/mame/roms/centiped2/136001-212.hj7 bs=1 count=2048 skip=2048
-$ dd if=sync2.sav of=/home/thomc/Workspace/mame/roms/centiped2/136001-213.p4 bs=1 count=256
+dd if=centi2.sav of=/home/thomc/Workspace/mame/roms/centiped2/136001-207.d1 bs=1 count=2048 skip=8192
+dd if=centi2.sav of=/home/thomc/Workspace/mame/roms/centiped2/136001-208.e1 bs=1 count=2048 skip=10240
+dd if=centi2.sav of=/home/thomc/Workspace/mame/roms/centiped2/136001-209.fh1 bs=1 count=2048 skip=12288
+dd if=centi2.sav of=/home/thomc/Workspace/mame/roms/centiped2/136001-210.j1 bs=1 count=2048 skip=14336
+dd if=cenpic.sav of=/home/thomc/Workspace/mame/roms/centiped2/136001-211.f7 bs=1 count=2048
+dd if=cenpic.sav of=/home/thomc/Workspace/mame/roms/centiped2/136001-212.hj7 bs=1 count=2048 skip=2048
+dd if=sync2.sav of=/home/thomc/Workspace/mame/roms/centiped2/136001-213.p4 bs=1 count=256
 #+END_EXAMPLE
 
 * STEP 6: START THE BLACK BOX AND TEST THE RESULT
